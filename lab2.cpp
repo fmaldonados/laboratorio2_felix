@@ -8,7 +8,8 @@ using std::endl;
 int factorial(int x);
 double distancia(int x1, int y1, int x2, int y2);
 double semiperimetro(double lado1, double lado2, double lado3);
-
+double altura(double l1, double l2, double l3, double s);
+double area(double altura, double diagonal);
 
 int main(int argc,char* argv[]){
 	int opcion;
@@ -93,9 +94,27 @@ int main(int argc,char* argv[]){
 		double semiperimetro1= semiperimetro(t1_l1,t1_l2,t1_l3), semiperimetro2= semiperimetro(t2_l1,t2_l2,t2_l3);
 		
 		cout <<"El semiperimetro del triangulo 1 es: "<< semiperimetro1<<endl;
-		cout << "El semiperimetro del triangulo 2 es: "<< semiperimetro2<< endl<< endl;
-		
+		cout << "El semiperimetro del triangulo 2 es: "<< semiperimetro2<< endl;
+		cout << "El perimetro del triangulo 1 es: "<< t1_l1 + t1_l2 + t1_l3<< endl;
+		cout << "El perimetro del triangulo 2 es: "<< t2_l1 + t2_l2 + t2_l3<< endl<< endl;
 
+		cout << "Las alturas del triangulo 1:"<<endl;
+		cout << "la altura del lado 1: "<< altura(t1_l1,t1_l2,t1_l3,semiperimetro1)<<endl;
+		cout << "la altura del lado 2: "<< altura(t1_l2,t1_l1,t1_l3,semiperimetro1)<<endl;
+		cout << "la altura del lado 3: "<< altura(t1_l3,t1_l2,t1_l1,semiperimetro1)<<endl;
+		
+		double t1_altura1=altura(t1_l1,t1_l2,t1_l3,semiperimetro1) , t1_altura2=altura(t1_l2,t1_l1,t1_l3,semiperimetro1) , 
+			t1_altura3= altura(t1_l3,t1_l2,t1_l1,semiperimetro1);
+
+		double t2_altura1=altura(t2_l1,t2_l2,t2_l3,semiperimetro2)
+			,t2_altura2=altura(t2_l2,t2_l1,t2_l3,semiperimetro2)
+			,t2_altura3=altura(t2_l3,t2_l2,t2_l1,semiperimetro2) ;
+		cout << "Las alturas del triangulo 2:"<<endl;
+                cout << "la altura del lado 1: "<< altura(t2_l1,t2_l2,t2_l3,semiperimetro2)<<endl;
+                cout << "la altura del lado 2: "<< altura(t2_l2,t2_l1,t2_l3,semiperimetro2)<<endl;
+                cout << "la altura del lado 3: "<< altura(t2_l3,t2_l2,t2_l1,semiperimetro2)<<endl;
+		
+		cout << "El area del trapezoide es: "<< area(t1_altura3,diagonal) + area(t2_altura3,diagonal)<<endl;
 		}else{
 			cout<<"ERROR! Esa no es una de las opciones";
 		}
@@ -131,9 +150,21 @@ double semiperimetro(double lado1, double lado2, double lado3){
 	return respuesta;
 
 }
+double altura(double l1, double l2, double l3, double s){
+	double respuesta;
+	double raiz;
+	double fraccion = 2/l1;
+	raiz = sqrt(s*(s-l1)*(s-l2)*(s-l3));
+	respuesta = fraccion*raiz;
+	return respuesta;
+}
 
-
-
+double area(double altura, double diagonal){
+	double respuesta;
+	respuesta = altura*diagonal;
+	respuesta/=2;
+	return respuesta;
+}
 
 
 
